@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>laughing man logo</title>
+  
+  <style>
+  /*reset*/
+  * {
+    margin: 0;
+    padding: 0;    
+  }
+  /*perfect vertical&horizontal center*/
+  body {    
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;    
+  }
+  </style>
+</head>
+<body>
+
+<!-- main color #004b73  -->
+<!-- vertical radius: 180px -->
+<!-- pure text version: I thought what I'd do was, I'd pretend I was one of those deaf-mutes. -->
+<canvas id="face" width="440" height="360"></canvas>
+
+<script type="text/javascript">
+  var canvas = document.getElementById("face");
+  var ctx = canvas.getContext("2d");
+
+  ctx.translate(180,180);
+
+  // outer circle
+  ctx.beginPath();
+  ctx.arc(0,0,180,0,2*Math.PI);
+  ctx.fillStyle = "#004b73";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(0,0,169,0,2*Math.PI);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+
+  //write the motto
+  writeText();
+
+  // middle cricle
+  ctx.beginPath();
+  ctx.arc(0,0,130,0,2*Math.PI);
+  ctx.fillStyle = "#004b73";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(0,0,122,0,2*Math.PI);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+
+  // the upper hat point
+  ctx.moveTo(-7,-126);
+  ctx.strokeStyle = "#004b73";
+  ctx.lineTo(7,-126);
+  ctx.stroke();
+
+  // hat lower edge
+  ctx.moveTo(-120,-27.5);
+  ctx.strokeStyle = "#004b73";
+  ctx.lineWidth = 23;
+  ctx.lineTo(195,-28);
+  ctx.stroke();
+
+  // little white patch
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(-135,-16,28,10);
+
+  // eyes
+  ctx.beginPath();
+  ctx.lineWidth = 0.0001;
+  ctx.ellipse(-48, 30, 33, 35, 0, 0, 2 * Math.PI);
+  ctx.fillStyle="#004b73";
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.ellipse(-48, 45, 42, 40, 0, 0, 2 * Math.PI);
+  ctx.fillStyle="#ffffff";
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.lineWidth = 0.0001;
+  ctx.ellipse(48, 30, 33, 35, 0, 0, 2 * Math.PI);
+  ctx.fillStyle="#004b73";
+  ctx.fill();
+  
+  ctx.beginPath();
+  ctx.ellipse(48, 45, 42, 40, 0, 0, 2 * Math.PI);
+  ctx.fillStyle="#ffffff";
+  ctx.fill();
+  
+  // right white patch
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(105,-16,80,40);
+
+  // lips
+  ctx.beginPath();
+  ctx.arc(0,0,93,0.085*Math.PI,0.915*Math.PI);
+  ctx.lineWidth = 20;
+  ctx.fillStyle = "#004b73";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(0,0,74,0.215*Math.PI,0.785*Math.PI);
+  ctx.lineWidth = 20;
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+
+  // right color patch
+  ctx.beginPath();
+  ctx.lineWidth = 23;
+  ctx.moveTo(120,36);
+  ctx.lineTo(195,35);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(194.5,3.48,31.6,-0.5*Math.PI,0.5*Math.PI);
+  ctx.lineWidth = 23;
+  ctx.fillStyle = "#004b73";
+  ctx.stroke();
+
+  function writeText() {
+    var ang;
+    var num;
+    var offset;
+    var text = "I thought what I'd do was, I'd pretend I was one of those deaf-mutes.";
+    var textLength = text.length;
+    ctx.font = 180*0.19+"px Helvetica Neue";
+    ctx.textBaseLine = "middle";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#004b73";
+    for (num=0;num<textLength;num++) {
+      ang = num*2*Math.PI/textLength;
+      offset = -57*Math.PI/360;
+      ctx.rotate(ang+offset);
+      ctx.translate(0,-180*0.80);
+      ctx.fillText(text[num],0,0);
+      ctx.translate(0,180*0.80);
+      ctx.rotate(-(ang+offset));
+    }
+  }
+</script>
+
+</body>
+</html>
