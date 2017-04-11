@@ -5,9 +5,10 @@
 	<title>Text-lens</title>
 	<script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script>
   <style> 
-    * { font-family: helvetica; }
+    * { font-family: helvetica; color: #3f3f3f; }
     body { text-shadow: 0 0 2px rgba(0,0,0,0.3); }
-    .elm { display: flex; justify-content: center; align-items: center; height: 160px; font-size: 36px; font-weight: bold;}
+    .head { width: 28%; text-align: center; margin: 0 auto; }
+    .elm { display: flex; justify-content: center; align-items: center; height: 160px; font-size: 36px; font-weight: bold; }
     .intro { font-style: italic; }
     .elm img { height: 100%; }
     .caption { text-align: center; }
@@ -15,9 +16,12 @@
   </style>
 </head>
 <body>
-  <h1>Text-Lens</h1>
-  <p class="intro">Inspired by similar scenes in many movies, made by handful <span style="color: red;">&hearts;</span></p>
-  <hr>
+  <div class="head">
+    <h1>Text-Lens</h1>
+    <p class="intro">Inspired by similar scenes in many movies, made by handful <span style="color: red;">&hearts;</span></p>
+    <hr>
+  </div>
+  
   <div class="elm">4096void</div>
   <div class="elm">+</div>
   <div class="elm"><img src="lib.jpg" alt=""></div>
