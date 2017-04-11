@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+	<title>Text-lens</title>
+	<script src="http://apps.bdimg.com/libs/jquery/1.8.2/jquery.min.js"></script>
+  <style> 
+    * { font-family: helvetica; }     
+    .elm { display: flex; justify-content: center; align-items: center; height: 160px; font-size: 36px; font-weight: bold;}
+    .intro { font-style: italic; }
+    .elm img { height: 100%; }
+    .caption { text-align: center; }
+    #name { margin: 0 auto; display: block; border: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <h1>Text-Lens</h1>
+  <p class="intro">Inspired by similar scenes in many movies, made by handful <span style="color: red;">&hearts;</span></p>
+  <hr>
+  <div class="elm">4096void</div>
+  <div class="elm">+</div>
+  <div class="elm"><img src="lib.jpg" alt=""></div>
+  <div class="elm">=</div>
+  <div class="caption">move your cursor around in the bottom right blank area to see what changes</div>
+  <canvas id="name" width=500 height=500></canvas>
+  <script>
+  	var ct = document.getElementById('name').getContext('2d');
+
+  	var img = document.createElement('canvas');
+  	img.width = 460;
+  	img.height = 467;
+
+  	var sr = new Image();  	
+  	sr.src = 'lib.jpg';
+
+  	sr.onload = function () {
+  		img.getContext('2d').drawImage(sr, 10, 10);
+  	  var p = ct.createPattern(img, 'no-repeat');
+	  	ct.fillStyle = p;	  	
+	    ct.font = '50px Helvetica';	    
+	    ct.fillText('4096void', 50, 50);
+  	};
+
+  	var pre_cord = {};
+    // thx a ton for jQuery's event wrapper
+  	$('#name').on('mousemove', function (e) {
+  		if (!pre_cord.X || !pre_cord.Y) {
+  			pre_cord.X = e.screenX;
+        pre_cord.Y = e.screenY;
+        return;
+  		} else {
+  			var diffX, diffY;
+        if (e.screenX != pre_cord.X) {
+        	diffX = (pre_cord.X - e.screenX)*0.6;        	
+        }
+        if (e.screenY != pre_cord.Y) {
+        	diffY = (pre_cord.Y - e.screenY)*0.6;        	
+        }
+        if (e.screenX == pre_cord.X) {
+        	diffX = 0;
+        }
+        if (e.screenY == pre_cord.Y) {
+        	diffY = 0;
+        }
+
+        img.getContext('2d').drawImage(sr, 10+diffX, 10+diffY);
+        var p = ct.createPattern(img, 'no-repeat');
+        ct.fillStyle = p;
+        ct.font = '50px Helvetica';
+        ct.fillText('4096void', 50, 50);
+  		}
+  	});
+  </script>
+</body>
+</html>
